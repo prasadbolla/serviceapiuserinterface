@@ -28,6 +28,9 @@ public class TestController {
 		ClientInfoRepository clientInfoRepository = new ClientInfoRepository();
 		ClientInfo infoUIResponse = clientInfoRepository
 				.getClinetInfo(emailId);
+		if(infoUIResponse != null && infoUIResponse.getClientId() != null)
 		return ResponseEntity.ok(infoUIResponse);
+		
+		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 }
