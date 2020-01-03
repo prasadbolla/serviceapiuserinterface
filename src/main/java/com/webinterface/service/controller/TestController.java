@@ -2,6 +2,7 @@ package com.webinterface.service.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.webinterface.service.service.ClientInfoRepository;
  
 @RestController
 @RequestMapping(path = "/api")
+@CrossOrigin
 public class TestController {
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getTest()
