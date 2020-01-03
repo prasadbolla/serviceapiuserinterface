@@ -20,7 +20,10 @@ public class ClientInfoRepository {
  
  public static ClientInfo getClinetInfo(String emailId){
 	 String domain = emailId .substring(emailId .indexOf("@") + 1);
+	 if(clientInfoHashMap.containsKey(domain))
 	 return clientInfoHashMap.get(domain);
+	 
+	 return null;
  }
  public static void main(String[] a){
 	 ClientInfoRepository client = new ClientInfoRepository();
