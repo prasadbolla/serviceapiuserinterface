@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.webinterface.service.component.ClientInfoServiceImpl;
 import com.webinterface.service.component.ResourceInfoServiceImpl;
+import com.webinterface.service.component.ServicesInfoServiceImpl;
 import com.webinterface.service.component.SubscriptionInfoServiceImpl;
 import com.webinterface.service.domain.ClientInfo;
+import com.webinterface.service.domain.GetServiceInfoResponse;
 import com.webinterface.service.domain.ResourceInfo;
 
 @RestController
@@ -25,6 +27,13 @@ public class ServicesAPIController {
 	@Autowired
 	public ResourceInfoServiceImpl resourceInfoServiceImpl;
 
+	@Autowired
+	public ServicesInfoServiceImpl servicesInfoServiceImpl;
+
+	/**
+	 * @param emailId
+	 * @return
+	 */
 	@GetMapping(value = "/clientInfo/{emailId}")
 	public ResponseEntity<ClientInfo> getClientInfo(@PathVariable String emailId) {
 		ClientInfo infoUIResponse = clientInfoServiceImpl
@@ -35,6 +44,10 @@ public class ServicesAPIController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * @param authorizationCode
+	 * @return
+	 */
 	@GetMapping(value = "/subscriptions/subscription")
 	public ResponseEntity<ResourceInfo> getSubscriptionIdBasedOnAuth(
 			@RequestHeader String authorizationCode) {
@@ -42,11 +55,33 @@ public class ServicesAPIController {
 				.getSubscriptionInfo(authorizationCode));
 
 	}
+
+	/**
+	 * @param subscriptionId
+	 * @param authorizationCode
+	 * @return
+	 */
 	@GetMapping(value = "/services/service/{subscriptionId}")
 	public ResponseEntity<ResourceInfo> getResourceInfoBasedOnAuth(
-			@PathVariable String subscriptionId, @RequestHeader String authorizationCode) {
-		return ResponseEntity.ok(resourceInfoServiceImpl
-				.getResourceInfo(subscriptionId, authorizationCode));
+			@PathVariable String subscriptionId,
+			@RequestHeader String authorizationCode) {
+		return ResponseEntity.ok(resourceInfoServiceImpl.getResourceInfo(
+				subscriptionId, authorizationCode));
+
+	}
+
+	// yet to complete
+	/**
+	 * @param subscriptionIdentifier
+	 * @param authorizationCode
+	 * @return
+	 */
+	@GetMapping(value = "/services/{subscriptionIdentifier}")
+	public ResponseEntity<GetServiceInfoResponse> getServices(
+			@PathVariable String subscriptionIdentifier,
+			@RequestHeader String authorizationCode) {
+		return ResponseEntity.ok(servicesInfoServiceImpl.getServiceInfo(
+				subscriptionIdentifier, authorizationCode));
 
 	}
 }
