@@ -11,7 +11,7 @@ import com.webinterface.service.domain.ResourceInfo;
 @FeignClient(contextId = "servicesInfoClient", name = "externalgetserviceapi", url = "http://52.228.103.152:80")
 @Component
 public interface ServicesProxy {
-	@GetMapping("services/service/{subscriptionIdentifier}")
+	@GetMapping("services/{subscriptionIdentifier}")
 	public ResourceInfo getServicesBySubscriptionIdentifier(@PathVariable("subscriptionIdentifier") String subscriptionIdentifier,
 			@RequestHeader("authorizationCode") String authorizationCode);
 
