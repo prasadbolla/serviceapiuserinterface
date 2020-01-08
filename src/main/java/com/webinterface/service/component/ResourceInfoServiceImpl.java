@@ -6,7 +6,9 @@ package com.webinterface.service.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.webinterface.service.adapter.ResourceInfoProxy;
 import com.webinterface.service.adapter.ServicesProxy;
+import com.webinterface.service.domain.ResourceGroupList;
 import com.webinterface.service.domain.ResourceInfo;
 
 /**
@@ -17,6 +19,9 @@ import com.webinterface.service.domain.ResourceInfo;
 public class ResourceInfoServiceImpl {
 	@Autowired
 	private ServicesProxy servicesProxy;
+	
+	@Autowired
+	private ResourceInfoProxy resourceInfoProxy;
 
 	/**
 	 * @param subscriptionIdentifier
@@ -28,5 +33,11 @@ public class ResourceInfoServiceImpl {
 			String authorizationCode) {
 
 		return servicesProxy.getServicesBySubscriptionIdentifier(subscriptionIdentifier, authorizationCode);
+	}
+	
+	public ResourceGroupList getResourceGroups(String subscriptionIdentifier,
+			String authorizationCode) {
+
+		return resourceInfoProxy.getResourceGroupsBySubscriptionId(subscriptionIdentifier, authorizationCode);
 	}
 }

@@ -15,6 +15,7 @@ import com.webinterface.service.component.ServicesInfoServiceImpl;
 import com.webinterface.service.component.SubscriptionInfoServiceImpl;
 import com.webinterface.service.domain.ClientInfo;
 import com.webinterface.service.domain.GetServiceInfoResponse;
+import com.webinterface.service.domain.ResourceGroupList;
 import com.webinterface.service.domain.ResourceInfo;
 
 @RestController
@@ -66,6 +67,20 @@ public class ServicesAPIController {
 			@PathVariable String subscriptionId,
 			@RequestHeader String authorizationCode) {
 		return ResponseEntity.ok(resourceInfoServiceImpl.getResourceInfo(
+				subscriptionId, authorizationCode));
+
+	}
+	
+	/**
+	 * @param subscriptionId
+	 * @param authorizationCode
+	 * @return
+	 */
+	@GetMapping(value = "/services/service/{subscriptionId}/resourceGroups")
+	public ResponseEntity<ResourceGroupList> getResourceGroupsBasedOnAuth(
+			@PathVariable String subscriptionId,
+			@RequestHeader String authorizationCode) {
+		return ResponseEntity.ok(resourceInfoServiceImpl.getResourceGroups(
 				subscriptionId, authorizationCode));
 
 	}
