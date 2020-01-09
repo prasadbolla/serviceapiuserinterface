@@ -85,7 +85,7 @@ public class ServicesAPIController {
 
 	}
 
-	// yet to complete
+	// yet to complete below method
 	/**
 	 * @param subscriptionIdentifier
 	 * @param authorizationCode
