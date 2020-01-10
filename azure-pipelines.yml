@@ -14,7 +14,7 @@ steps:
   displayName: Login to ACR
   inputs:
     command: login
-    containerRegistry: apiservicescontainerregistory
+    containerRegistry: servicesapiazurecontainerregistoryserviceconnection
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -29,5 +29,5 @@ steps:
   displayName: Build and Push
   inputs:
     command: buildAndPush
-    repository: serviceapiuserinterface
+    repository: servicesapiuserinterface
     tags: latest
