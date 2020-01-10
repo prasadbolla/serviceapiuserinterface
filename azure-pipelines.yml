@@ -14,7 +14,7 @@ steps:
   displayName: Login to ACR
   inputs:
     command: login
-    containerRegistry: servicesapiazurecontainerregistoryserviceconnection
+    containerRegistry: apiservicescontainerregistoryserviceconnection
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
