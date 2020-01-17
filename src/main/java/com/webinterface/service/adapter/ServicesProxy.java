@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.webinterface.service.domain.ResourceInfo;
 
-@FeignClient(contextId = "servicesInfoClient", name = "externalgetserviceapi", url = "http://localhost:8081")
+@FeignClient(contextId = "servicesInfoClient", name = "externalgetserviceapi", url = "http://52.228.102.206:80")
 @Component
 public interface ServicesProxy {
 	@GetMapping("services/{subscriptionIdentifier}")
